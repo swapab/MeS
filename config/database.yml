@@ -1,0 +1,23 @@
+default: &DEFAULT
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password:
+  host: localhost
+
+development:
+  <<: *DEFAULT
+  database: me_spring_dev
+
+test:
+  <<: *DEFAULT
+  database: me_spring_test
+
+staging:
+  <<: *DEFAULT
+  database: me_spring_stage
+
+production:
+  <<: *DEFAULT
+  database: me_spring_live
