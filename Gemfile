@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'foundation-rails'
 gem 'rails', '3.2.17'
-gem 'pg'
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,4 +22,5 @@ group :development, :test  do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'thin'
 end

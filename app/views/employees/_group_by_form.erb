@@ -1,0 +1,10 @@
+<%= form_for(:employee, url: grouped_employees_path, method: :get) do |f| %>
+  <p class='group-by'>Group By :
+    <% Employee.group_by_columns.each do |column| %>
+      <span class='column'>
+        <%= f.radio_button :group_by, column, checked: @group_by == column ? 'checked' : '', onclick: "this.form.submit();" %>
+        <%= f.label :group_by, column, value: column %>
+        </span>
+    <% end %>
+  </p>
+<% end %>

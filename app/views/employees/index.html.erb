@@ -1,2 +1,21 @@
-<h1>Employees#index</h1>
-<p>Find me in app/views/employees/index.html.erb</p>
+<table class='sortable'>
+  <thead>
+    <tr>
+     <th><%= sortable('name') %></th>
+     <th><%= sortable('age') %></th>
+     <th><%= sortable('email_id', 'Email-Id') %></th>
+     <th><%= sortable('location') %></th>
+     <th><%= sortable('department') %></th>
+     <th><%= sortable('designation') %></th>
+     <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @employees.blank?  %>
+      <p>Bummer !!! Nothing found.</p>
+    <% else %>
+      <%= render @employees %>
+    <% end %>
+  </tbody>
+</table>
+

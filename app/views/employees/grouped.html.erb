@@ -1,0 +1,21 @@
+<table class='sortable'>
+  <thead>
+    <tr>
+     <th>Grouped By</th>
+     <th>Employee Names</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @employees.blank?  %>
+      <p>Bummer !!! Nothing found.</p>
+    <% else %>
+      <% @employees.each do |group_collection| %>
+        <tr>
+          <td><%= group_collection.first %></td>
+          <td><%= group_collection.last.map(&:name).join(', ') %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+

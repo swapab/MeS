@@ -1,23 +1,19 @@
 default: &DEFAULT
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
   pool: 5
-  username: postgres
-  password:
-  host: localhost
 
 development:
   <<: *DEFAULT
-  database: me_spring_dev
+  database: db/me_spring_dev.sqlite3
 
 test:
   <<: *DEFAULT
-  database: me_spring_test
+  database: db/me_spring_test.sqlite3
 
 staging:
   <<: *DEFAULT
-  database: me_spring_stage
+  database: db/me_spring_stage.sqlite3
 
 production:
   <<: *DEFAULT
-  database: me_spring_live
+  database: db/me_spring_live.sqlite3
