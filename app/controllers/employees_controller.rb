@@ -18,7 +18,7 @@ class EmployeesController < ApplicationController
 
   def archived
     @title = 'MeSpring - Archived Employees'
-    @employees = Employee.order("#{sort_column} #{sort_direction}").search(search_query).only_deleted
+    @employees = Employee.only_deleted
     render :index
   end
 
