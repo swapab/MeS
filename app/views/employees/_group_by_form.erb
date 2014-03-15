@@ -2,7 +2,7 @@
   <p class='group-by'>Group By :
     <% Employee.group_by_columns.each do |column| %>
       <span class='column'>
-        <%= f.radio_button :group_by, column, checked: @group_by == column ? 'checked' : '', onclick: "this.form.submit();" %>
+        <%= f.radio_button :group_by, column, checked: is_checked?(column), onclick: "this.form.submit();" %>
         <%= f.label :group_by, column, value: column %>
         </span>
     <% end %>

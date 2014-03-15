@@ -7,9 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <h1><a href='/'>Home</a></h1>
 <%= render 'employees/group_by_form' %>
+<%= render 'employees/search_form' %>
 <%= yield %>
 
 </body>
 </html>
+
+<script>
+  $(function(){
+    <% if flash.present? %>
+      alert("<%= raw(flash_message) %>");
+    <% end %>
+  });
+</script>

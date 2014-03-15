@@ -1,0 +1,5 @@
+<%= form_for('', url: employees_path, method: :get) do |f| %>
+  <p class='search'>Search :
+    <%= search_field(:employee, :search, value: @search_query, size: 20) %>
+  </p>
+<% end %>

@@ -5,5 +5,7 @@
   <td><%= employee.location %></td>
   <td><%= employee.department %></td>
   <td><%= employee.designation %></td>
-  <td><%= link_to 'Delete', employee_path(employee.id), method: :delete %></td>
+  <td><%= link_to 'Delete', employee_path(employee.id),
+                            method: :delete,
+                            data: {confirm: "Are you sure?"} %></td>
 </tr>

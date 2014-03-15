@@ -12,10 +12,9 @@
   </thead>
   <tbody>
     <% if @employees.blank?  %>
-      <p>Bummer !!! Nothing found.</p>
+      <p>Bummer !!! No one here.</p>
     <% else %>
       <%= render @employees %>
     <% end %>
   </tbody>
 </table>
-

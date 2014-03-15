@@ -3,13 +3,13 @@ class EmployeesController < ApplicationController
   before_filter :sanitize_group_by, only: :grouped
 
   def index
-    @employees = Employee.order("#{sort_column} #{sort_direction}")
+    @employees = Employee.order("#{sort_column} #{sort_direction}").search(search_query)
   end
 
-  def destory
+  def destroy
     @employee = Employee.find(params[:id])
-    if @employee.destory
-      redirect_to :root, success: deletion_message
+    if @employee.destroy
+      redirect_to :root, notice: deletion_message
     else
       redirect_to :root, error: 'Failed to delete employee'
     end
@@ -22,7 +22,7 @@ class EmployeesController < ApplicationController
   private
 
     def deletion_message
-      if @employee.deleted?
+      if @employee.destroyed?
         'Successfully deleted employee'
       elsif @employee.archived?
         'Successfully archived employee'
@@ -33,6 +33,10 @@ class EmployeesController < ApplicationController
       @group_by ||= params[:employee].fetch(:group_by, 'location')
       Employee.group_by_columns.include?(@group_by) or
         redirect_to(:root, error: 'In-Valid group-by option selected')
+    end
+
+    def search_query
+      @search_query ||= params[:employee].fetch(:search, nil) if params[:employee]
     end
 
     def sort_column
