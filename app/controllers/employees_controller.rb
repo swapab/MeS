@@ -3,7 +3,8 @@ class EmployeesController < ApplicationController
   before_filter :sanitize_group_by, only: :grouped
 
   def index
-    @employees = Employee.order("#{sort_column} #{sort_direction}").search(search_query)
+    @title = 'MeSpring - All Employees'
+    @employees = Employee.active.order("#{sort_column} #{sort_direction}").search(search_query)
   end
 
   def destroy
@@ -15,8 +16,14 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def archived
+    @title = 'MeSpring - Archived Employees'
+    @employees = Employee.order("#{sort_column} #{sort_direction}").search(search_query).only_deleted
+    render :index
+  end
+
   def grouped
-    @employees = Employee.group_by(@group_by)
+    @employees = Employee.active.group_by(@group_by)
   end
 
   private

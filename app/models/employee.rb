@@ -2,9 +2,11 @@ class Employee < ActiveRecord::Base
   DEFAULT_SORT_COLUMN = 'name'
   DEFAULT_DIRECTION = 'asc'
 
-  default_scope where('deleted_at IS NULL')
-
   attr_accessible :age, :department, :designation, :email_id, :location, :name
+
+  def self.active
+    where('deleted_at IS NULL')
+  end
 
   def self.group_by(column)
     all.group_by{ |e| e.try(column) }
@@ -12,6 +14,10 @@ class Employee < ActiveRecord::Base
 
   def self.group_by_columns
     Employee.attribute_names & Employee.accessible_attributes.to_a
+  end
+
+  def self.only_deleted
+    unscoped.where("deleted_at IS NOT NULL")
   end
 
   def self.search(query=nil)
